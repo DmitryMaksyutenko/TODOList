@@ -1,0 +1,23 @@
+list
+The "list" table keeps the name of the list of tasks.
+The "list_id" column is the serial primary key.
+The "title" column keeps the list name.
+The name of the list is unique in all table and start
+with the capital letter.
+
+
+task
+The "task" table keeps the strings with the task
+description and its condition states.
+The "taks_id" column is the serial primary key.
+The "context" column store the task description.
+The "condition" column store the task state.
+The "list_id" column refers to the corresponding column
+in the "list" table.
+
+
+Relations
+The "task" table refers to the "list" in one-to-many
+relation. "The list consists of multiple tasks".
+If the row from the "list" was deleted, then 
+the corresponding rows from the "task" delete too.

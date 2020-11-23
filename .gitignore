@@ -5,3 +5,11 @@ __pycache__/
 
 # Swap
 *.swp
+
+# Files
+.env
+
+
+# Pipenv
+Pipfile
+Pipfile.lock
