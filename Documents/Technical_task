@@ -1,0 +1,129 @@
+The project helps to describe the steps for work performing.
+Can be a list of notes or reminders.
+
+It is a single-page web application, that creates a list of the ordered tasks for performing.
+The tasks can be added, deleted, modified, mark as completed, changed the places.
+The list can be saved into the database, retreived and deleted.
+
+The TODOList application can be part of the service for project management.
+The realization of the backend side must be simply applied to the mobile application
+or included in the larger project. The backend and frontend communicate with each other
+with API via JSON data format. Backend application queries the data from the database
+only through the view. The frontend is a separate single page web-application.
+
+In the database. If the list update, all old tasks are deleted, and new are saved.
+If all tasks in the list are completed, the list and tasks are deleted.
+The list is deleted with tasks.
+
+
+THE LIST CREATION.
+
+- The main page has the two buttons:
+    "Create list"
+    "Load list"
+
+- After clicking the "Create list" button, appears the area for entering the
+  list name with  buttons:
+    "Create"
+    "Cancel"
+
+- If "Cancel" pressed appears the main page.
+
+- The name must pass the check.
+    names does not repeats.
+(The API call with JSON to the backend for checking the name. Returns JSON.)
+(The backend queries the database for names checking.)
+    name starts with the capital letter.
+    not longer the 500 letters.
+
+- If a check passed, appears the area for tasks creation with buttons:
+    "Add"
+    "Save"
+    "Delete list"
+
+
+LIST LOADIND.
+
+- After clicking the "Load list" button, appears the area with a set of the saved lists with buttons:
+    "Close"
+    "Load"
+(API request to the backend server for retrieving the data from the database. Returns the JSON)
+
+- The list in the set area must highlight when clicked left mouse button as selected.
+
+- If the list is selected the "Load" button can be pressed, otherwise not.
+
+- After the "Load" button pressed appears the selected list.
+(API call with JSON to the backend for list retrieving. Returns JSON.)
+(The backend queries the database to retrieve the list.)
+
+- If press the "Close" button, appears the main page.
+
+
+LIST SAVING.
+
+- If the "Save" button clicked, the list must pass the check:
+   The list must be not empty.
+
+- If a check passed, the list saves to the database.
+(The API call with JSON sending to the backend for saving the data.)
+(The database checks if the list already exists, if it is, the database update the list, else insert a new list,)
+
+
+LIST DELETEION.
+
+- If pressed "Delete list", the main page area appears.
+(The API call to the backend for list deletion.)
+(The database deletes the list with tasks.)
+
+
+THE TASK APPENDING.
+
+- After press the "Add" button appears the area for text entering with buttons:
+    "Add"
+    "Cancel"
+    the text not longer than 100 symbols.
+
+- If "Cancel" clicked the area for text entering is disappears.
+
+- If the "Add" button was pressed, the task appends to the top of the tasks area,
+  or under the last task.
+
+- The task is the single, movable, text area with the description of the task and, the buttons:
+    "Done"
+    "Edit"
+    "Delete"
+
+
+THE TASK COMPLETED.
+
+- If pressed the "Done" button, the task marked as completed.
+
+- If all tasks are marked as copmleted, the save button is not clickable, and
+  appears the area with the question "Got to the start page?", and buttons:
+    "Ok"
+    "Cancel"
+(The API call with JSON to the backend for checking the list existence.)
+(Backend queries the database for list existence, if it exists, the database deletes it.)
+
+
+THE TASK EDITING.
+
+- If pressed the "Edit" button, the task switch to the edit mode.
+  Appears the area with the task text and buttons:
+    "Ok"
+    "Cancel"
+
+- If "Ok" button pressed, task text is modified and edit mode turns off.
+
+- If "Cancel" button pressed, the text doesn't change and edit mode turns off.
+
+
+THE TASK DELETING.
+
+- If press the "Delete" button, the task removes from the list.
+
+
+THE TASK ORDER CHANGE.
+
+- The task can be moved to the other position inside the list with drag and drop.
