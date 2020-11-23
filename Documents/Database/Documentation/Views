@@ -1,0 +1,11 @@
+get_list
+"""
+Used for retrieving all list titles.
+"""
+
+get_list_with_tasks
+"""
+Used for retrieving the title form the "list" table and
+the context with the condition for corresponding tasks
+from the "task" table.
+"""

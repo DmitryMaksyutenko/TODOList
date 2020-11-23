@@ -1,0 +1,35 @@
+insert_into_list_return_list_id(list_title  VARCHAR) RETURNS INT
+"""
+This function inserts the "list_title" into the "list" table 
+and returns the "list_id" of the new row.
+
+"""
+
+is_list_exists(title VARCHAR) RETURNS BOOLEAN
+"""
+Checks, is the list with the name "title" are exists.
+Return true if the list exists, otherwise, return false.
+"""
+
+insert_tasks(list_id INT, tasks JSONB)
+"""
+This procedure is the inner for insert_list_with_tasks().
+Inserts the tasks with the corresponding list_id value,
+into the "task" table.
+"""
+
+insert_list_with_tasks(list_title VARCHAR, tasks JSONB)
+"""
+This procedure inserts the "list_title" into the "list" table, 
+and "tasks" into the "tasks" table.
+"""
+
+update_list_with_tasks(list_title VARCHAR, tasks JSONB)
+"""
+This function updates the tasks in the "task" table.
+"""
+
+delete_list(list_title VARCHAR)
+"""
+Deletes the list with corresponding tasks.
+"""
