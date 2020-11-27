@@ -1,0 +1,13 @@
+The "todolist" database consists of the tables:
+"list", "task". Those tables stores the data about
+the lists of tasks to be performed.
+
+For the database creates the tablespace "todolist_db".
+Path to that tablespace in the file system "/todolist_db".
+
+The connection with the database established via
+"todolist_role" role. This role has LOGIN privileges
+only.
+
+The database can be accessed only through the 
+views, functions, and procedures.

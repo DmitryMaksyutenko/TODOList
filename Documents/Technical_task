@@ -13,7 +13,7 @@ only through the view. The frontend is a separate single page web-application.
 
 In the database. If the list update, all old tasks are deleted, and new are saved.
 If all tasks in the list are completed, the list and tasks are deleted.
-The list is deleted with tasks.
+The list is deleted with tasks. The list name can't be changed.
 
 
 THE LIST CREATION.
@@ -29,7 +29,7 @@ THE LIST CREATION.
 
 - If "Cancel" pressed appears the main page.
 
-- The name must pass the check.
+- If "Create" pressed the name must pass the check.
     names does not repeats.
 (The API call with JSON to the backend for checking the name. Returns JSON.)
 (The backend queries the database for names checking.)
@@ -67,7 +67,7 @@ LIST SAVING.
 
 - If a check passed, the list saves to the database.
 (The API call with JSON sending to the backend for saving the data.)
-(The database checks if the list already exists, if it is, the database update the list, else insert a new list,)
+(If the list already exists, update the list, else insert a new list,)
 
 
 LIST DELETEION.
