@@ -1,5 +1,4 @@
-The "todolist" database consists of the tables:
-"list", "task". Those tables stores the data about
+The "todolist" database consists of the tables: "list", "task". Those tables stores the data about
 the lists of tasks to be performed.
 
 For the database creates the tablespace "todolist_db".

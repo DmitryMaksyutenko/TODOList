@@ -1,9 +1,9 @@
-CREATE VIEW get_lists AS
+CREATE OR REPLACE VIEW lists AS
 SELECT  title
 FROM list;
 
 
-CREATE VIEW get_list_with_tasks AS
+CREATE OR REPLACE VIEW list_with_tasks AS
 SELECT title, context, condition
 FROM list JOIN task ON
     list.list_id = task.list_id;

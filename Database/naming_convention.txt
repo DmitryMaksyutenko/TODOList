@@ -57,5 +57,5 @@ Keys
 
 Constraints
 - Constraints should be defined directly beneath the column they correspond to.
-    ndent the constraint so that it aligns to the right of the column name.
+    indent the constraint so that it aligns to the right of the column name.
 - If it is a table-level constraint that applies to the entire table then it should also appear at the end

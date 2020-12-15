@@ -1,4 +1,4 @@
-CREATE TABLE task
+CREATE TABLE IF NOT EXISTS task
 (
     task_id       SERIAL          NOT NULL,
     context       VARCHAR(100)    NOT NULL,

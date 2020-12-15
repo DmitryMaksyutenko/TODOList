@@ -1,0 +1,7 @@
+{
+    "python.linting.pylintArgs": [
+        "--load-plugins=pylint_django",
+        "--load-plugins=psycopg2",
+        "--load-plugins=djangorestframework",
+    ],
+}

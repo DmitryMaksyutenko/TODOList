@@ -5,7 +5,7 @@ and returns the "list_id" of the new row.
 
 """
 
-is_list_exists(title VARCHAR) RETURNS BOOLEAN
+does_list_exists(title VARCHAR) RETURNS BOOLEAN
 """
 Checks, is the list with the name "title" are exists.
 Return true if the list exists, otherwise, return false.

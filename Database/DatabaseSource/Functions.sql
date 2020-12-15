@@ -15,7 +15,7 @@ END;
 $$;
 
 
-CREATE FUNCTION is_list_exists(title VARCHAR)
+CREATE FUNCTION does_list_exists(title VARCHAR)
 RETURNS BOOLEAN
 LANGUAGE plpgsql AS
 $$

@@ -62,10 +62,7 @@ LIST LOADIND.
 
 LIST SAVING.
 
-- If the "Save" button clicked, the list must pass the check:
-   The list must be not empty.
-
-- If a check passed, the list saves to the database.
+- If the "Save" button clicked, the list saves to the database.
 (The API call with JSON sending to the backend for saving the data.)
 (If the list already exists, update the list, else insert a new list,)
 
