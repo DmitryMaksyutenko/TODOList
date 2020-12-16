@@ -11,7 +11,7 @@ export default {
 
   data () {
     return {
-      text: 'This is main page.'
+      text: 'This is test main page.'
     }
   }
 
