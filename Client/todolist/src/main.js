@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
-
+import store from './store/index'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
@@ -11,5 +11,6 @@ Vue.use(BootstrapVueIcons)
 Vue.config.productionTip = false
 
 new Vue({
-  render: h => h(App)
+  render: h => h(App),
+  store: store
 }).$mount('#app')

@@ -1,16 +1,22 @@
 <template>
   <div id="app">
-    <Main></Main>
+    <Main/>
+    <Create/>
+    <Load/>
   </div>
 </template>
 
 <script>
 import Main from './components/MainPage.vue'
+import Create from './components/Create'
+import Load from './components/Load'
 
 export default {
   name: 'App',
   components: {
-    Main
+    Main,
+    Create,
+    Load
   }
 }
 </script>
