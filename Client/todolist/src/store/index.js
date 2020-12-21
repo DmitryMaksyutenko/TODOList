@@ -14,13 +14,13 @@ export default new Vuex.Store({
 
   mutations: {
     updateMainVisibleState (state, value) {
-      state.mainVisible = value
+      this.state.mainVisible = value
     },
     updateCreateVisibleState (state, value) {
-      state.createVisible = value
+      this.state.createVisible = value
     },
     updateLoadVisibleState (state, value) {
-      state.loadVisible = value
+      this.state.loadVisible = value
     }
   }
 

@@ -1,20 +1,20 @@
 <template>
   <div id="app">
-    <Main/>
+    <MainPage/>
     <Create/>
     <Load/>
   </div>
 </template>
 
 <script>
-import Main from './components/MainPage.vue'
+import MainPage from './components/MainPage.vue'
 import Create from './components/Create'
 import Load from './components/Load'
 
 export default {
   name: 'App',
   components: {
-    Main,
+    MainPage,
     Create,
     Load
   }

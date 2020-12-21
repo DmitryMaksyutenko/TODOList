@@ -1,39 +1,33 @@
 <template>
-    <div id="main"
+    <div id="mainPage"
       v-show="$store.state.mainVisible"
-      class="main">
+      class="mainPage">
       <b-button-group vertical
        class="group">
-        <b-button pill class="button"
+        <b-button pill id="createButton" class="button"
           v-on:click="showCreate">Create List</b-button>
-        <b-button pill class="button"
+        <b-button pill id="loadButton" class="button"
           v-on:click="showLoad">Load List</b-button>
       </b-button-group>
     </div>
 </template>
 
 <script>
+
 export default {
 
-  name: 'Main',
-
-  data () {
-    return {
-    }
-  },
+  name: 'MainPage',
 
   methods: {
     showCreate () {
-      this.hideAfterClick()
       this.$store.commit('updateCreateVisibleState', true)
+      this.$store.commit('updateLoadVisibleState', false)
+      this.$store.commit('updateMainVisibleState', false)
     },
 
     showLoad () {
-      this.hideAfterClick()
       this.$store.commit('updateLoadVisibleState', true)
-    },
-
-    hideAfterClick () {
+      this.$store.commit('updateCreateVisibleState', false)
       this.$store.commit('updateMainVisibleState', false)
     }
   }
@@ -42,7 +36,7 @@ export default {
 </script>
 
 <style>
-.main {
+.mainPage {
   width: 100%;
   height: 100%;
 }
