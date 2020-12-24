@@ -14,15 +14,24 @@ SECRET_KEY = env("SECRET_KEY")
 # https://docs.djangoproject.com/en/3.0/ref/settings/#debug
 DEBUG = env("DEBUG")
 # https://docs.djangoproject.com/en/3.0/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = ["127.0.0.1", "localhost", "0.0.0.0"]
-# https://docs.djangoproject.com/en/3.0/ref/settings/#root-urlconf
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", "0.0.0.0", "192.168.0.101"]
+
 ROOT_URLCONF = 'configs.urls'
+
+MIDDLEWARE = [
+    "django.middleware.security.SecurityMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
+]
 
 INSTALLED_APPS = [
     "django.contrib.auth",
     "django.contrib.contenttypes",
 
     "rest_framework",
+    "corsheaders",
 
     "CreateList",
     "LoadList",
@@ -55,3 +64,11 @@ TEMPLATES = [
         },
     },
 ]
+
+SECURE_HSTS_SECONDS = 10
+SECURE_HSTS_PRELOAD = False
+SECURE_HSTS_INCLUDE_SUBDOMAINS = False
+SECURE_SSL_REDIRECT = False
+CSRF_COOKIE_SECURE = False
+CORS_ORIGIN_ALLOW_ALL = True
+

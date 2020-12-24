@@ -2,16 +2,34 @@
     <div id="load"
         v-show="$store.state.loadVisible"
         class="load">
-        <b-list-group class="lst-group overflow-auto">
-          <b-list-group-item
-            v-for="list in Lists" v-bind:key="list"
+        <b-list-group
+        id="listGroup"
+        class="lst-group overflow-auto">
+          <div v-if="$store.state.lists.length === 0">
+            <h1>There are no lists with tasks.</h1>
+          </div>
+          <b-list-group-item v-else
+            id="listItem"
+            v-for="list in $store.state.lists"
+            v-bind:key="list"
+            v-on:click="itemClickActions($event)"
             class="lst-item">
             {{ list }}
             </b-list-group-item>
         </b-list-group>
         <div class="d-inline">
-          <b-button pill class="load-button">Load</b-button>
-          <b-button pill class="load-button">Cencel</b-button>
+          <b-button
+           id="loadButton"
+           :disabled="buttonLoadDisabled"
+           pill
+           class="load-button">Load
+          </b-button>
+          <b-button
+           id="cancelButton"
+           v-on:click="cancelButtonActions"
+           pill
+           class="load-button">Cancel
+          </b-button>
         </div>
     </div>
 </template>
@@ -23,30 +41,38 @@ export default {
 
   data () {
     return {
-      Lists: [
-        'some text some text some text some text some text some text 1',
-        'some text some text some text some text some text some text 2',
-        'some text some text some text some text some text some text 3',
-        'some text some text some text some text some text some text 4',
-        'some text some text some text some text some text some text 5',
-        'some text some text some text some text some text some text 6',
-        'some text some text some text some text some text some text 7',
-        'some text some text some text some text some text some text 8',
-        'some text some text some text some text some text some text 9',
-        'some text some text some text some text some text some text 11',
-        'some text some text some text some text some text some text 12',
-        'some text some text some text some text some text some text 13',
-        'some text some text some text some text some text some text 14',
-        'some text some text some text some text some text some text 15',
-        'some text some text some text some text some text some text 16',
-        'some text some text some text some text some text some text 17',
-        'some text some text some text some text some text some text 18',
-        'some text some text some text some text some text some text 19',
-        'some text some text some text some text some text some text 20',
-        'some text some text some text some text some text some text 21',
-        'some text some text some text some text some text some text 22',
-        'some text some text some text some text some text some text 23'
-      ]
+      buttonLoadDisabled: true,
+      selectedList: undefined
+    }
+  },
+  methods: {
+    itemClickActions (event) {
+      this.buttonLoadDisabled = false
+      this.listItemHiglight(event.target)
+    },
+
+    listItemHiglight (domElement) {
+      this.removeClickedClassFromList()
+      domElement.classList.add('lst-item-clicked')
+      this.setSelectedList(domElement)
+    },
+
+    removeClickedClassFromList () {
+      try {
+        this.selectedList.classList.remove('lst-item-clicked')
+      } catch (error) {}
+    },
+
+    setSelectedList (domElement) {
+      this.selectedList = domElement
+    },
+
+    cancelButtonActions () {
+      this.removeClickedClassFromList()
+      this.selectedList = undefined
+      this.buttonLoadDisabled = true
+      this.$store.commit('updateLoadVisibleState', false)
+      this.$store.commit('updateMainVisibleState', true)
     }
   }
 
@@ -67,9 +93,12 @@ export default {
 }
 
 .lst-item {
-  margin: 1%;
-  font-size: 100%;
-  border: 1px solid lightblue;
+  margin: 2%;
+  outline: 1px solid lightblue;
+  user-select: none;
+}
+.lst-item-clicked {
+  outline: 3px solid rgb(122, 187, 209);
 }
 
 .load-button {
@@ -84,7 +113,6 @@ export default {
 
 .lst-group {
   width: 96%;
-  max-height: 80%;
   margin-top: 1%;
   margin-left: 2%;
 }

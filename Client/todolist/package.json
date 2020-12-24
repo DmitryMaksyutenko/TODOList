@@ -9,6 +9,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "bootstrap": "^4.5.3",
     "bootstrap-vue": "^2.21.0",
     "core-js": "^3.8.1",
@@ -51,6 +52,6 @@
     }
   },
   "alias": {
-    "localVue" : "./node_modules/vue/dist/vue.common.js"
+    "localVue": "./node_modules/vue/dist/vue.common.js"
   }
 }

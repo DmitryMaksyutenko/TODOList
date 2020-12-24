@@ -4,7 +4,7 @@ import Vuex from 'vuex'
 import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
 
 import tstStore from '../store/index'
-import MainPage from '../components/MainPage.vue'
+import Main from '../components/Main.vue'
 import Create from '../components/Create.vue'
 import Load from '../components/Load.vue'
 
@@ -13,7 +13,7 @@ localVue.use(Vuex)
 localVue.use(BootstrapVue)
 localVue.use(BootstrapVueIcons)
 
-describe('MainPage.vue', () => {
+describe('Main.vue', () => {
   let store
   let mainDiv
   let createDiv
@@ -23,7 +23,7 @@ describe('MainPage.vue', () => {
 
   beforeEach(() => {
     store = tstStore
-    const mainComponentWrapper = shallowMount(MainPage, { store, localVue })
+    const mainComponentWrapper = shallowMount(Main, { store, localVue })
     const createComponentWrapper = shallowMount(Create, { store, localVue })
     const loadComponentWrapper = shallowMount(Load, { store, localVue })
 

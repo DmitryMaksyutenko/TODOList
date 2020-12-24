@@ -11,7 +11,7 @@ from .views import (
 app_name = "Api"
 
 urlpatterns = [
-    path("lists", get_all_lists),
+    path("lists/", get_all_lists),
     re_path(r"list/(?P<title>[a-zA-z0-9 -]+)", get_list),
     re_path("insert/", insert_list),
     re_path("update/", update_list),

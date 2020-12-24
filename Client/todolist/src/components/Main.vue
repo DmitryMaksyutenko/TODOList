@@ -29,6 +29,7 @@ export default {
       this.$store.commit('updateLoadVisibleState', true)
       this.$store.commit('updateCreateVisibleState', false)
       this.$store.commit('updateMainVisibleState', false)
+      this.$store.dispatch('getLists')
     }
   }
 
@@ -42,9 +43,9 @@ export default {
 }
 
 .group {
-  width: 50%;
-  height: 50%;
-  margin-top: 20%;
+  width: 30%;
+  height: 30%;
+  margin-top: 25%;
 }
 
 .button {
@@ -56,24 +57,26 @@ export default {
 @media screen and (max-width: 500px) {
  .button {
    margin-bottom: 75%;
-  font-size: 120%;
+   font-size: 120%;
  }
 
  .group {
-   height: 80%;
-   margin-top:35%;
+   height: 70%;
+   width: 50%;
+   margin-top: 40%;
  }
 }
 
 @media screen and (min-width: 1300px) {
  .button {
-   margin-bottom: 25%;
-  font-size: 200%;
+   margin-bottom: 20%;
+   font-size: 200%;
  }
 
  .group {
-   height: 80%;
-   margin-top:10%;
+   height: 40%;
+   width: 25%;
+   margin-top:15%;
  }
 }
 </style>
