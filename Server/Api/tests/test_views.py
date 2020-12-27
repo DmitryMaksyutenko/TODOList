@@ -18,9 +18,9 @@ import utils.tst_db_setup as tst_db
 TEST_DATA = [
     {"title": tst_db.TEST_LIST[0]},
     {"tasks": {
-                0: {"context": tst_db.TEST_TASKS[0]["context"],
+                0: {"content": tst_db.TEST_TASKS[0]["content"],
                     "condition": tst_db.TEST_TASKS[0]["condition"]},
-                1: {"context": tst_db.TEST_TASKS[1]["context"],
+                1: {"content": tst_db.TEST_TASKS[1]["content"],
                     "condition": tst_db.TEST_TASKS[1]["condition"]},
               }
      }
@@ -29,9 +29,9 @@ TEST_DATA = [
 INSERT_TEST_DATA = [
     {"title": tst_db.TEST_LIST[1]},
     {"tasks": {
-                0: {"context": tst_db.TEST_TASKS[0]["context"],
+                0: {"content": tst_db.TEST_TASKS[0]["content"],
                     "condition": tst_db.TEST_TASKS[0]["condition"]},
-                1: {"context": tst_db.TEST_TASKS[1]["context"],
+                1: {"content": tst_db.TEST_TASKS[1]["content"],
                     "condition": tst_db.TEST_TASKS[1]["condition"]},
               }
      }
@@ -40,9 +40,9 @@ INSERT_TEST_DATA = [
 UPDATE_TEST_DATA = [
     {"title": tst_db.TEST_LIST[0]},
     {"tasks": {
-                0: {"context": tst_db.TEST_TASKS[1]["context"],
+                0: {"content": tst_db.TEST_TASKS[1]["content"],
                     "condition": tst_db.TEST_TASKS[1]["condition"]},
-                1: {"context": tst_db.TEST_TASKS[2]["context"],
+                1: {"content": tst_db.TEST_TASKS[2]["content"],
                     "condition": tst_db.TEST_TASKS[2]["condition"]},
               }
      }
@@ -58,10 +58,10 @@ class ApiViewsTestCase(TestCase):
         tst_db.set_up_test_list([(TEST_DATA[0]["title"],)])
         tst_db.set_up_test_tasks(
             [
-                (TEST_DATA[1]["tasks"][0]["context"],
+                (TEST_DATA[1]["tasks"][0]["content"],
                  TEST_DATA[1]["tasks"][0]["condition"],
                  1),
-                (TEST_DATA[1]["tasks"][1]["context"],
+                (TEST_DATA[1]["tasks"][1]["content"],
                  TEST_DATA[1]["tasks"][1]["condition"],
                  1)
              ]

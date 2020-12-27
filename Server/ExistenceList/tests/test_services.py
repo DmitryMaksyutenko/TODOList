@@ -10,13 +10,13 @@ TEST_LIST_DATA = [
     (tst_db.TEST_LIST[2],)
 ]
 TEST_TAKS_DATA = [
-    (tst_db.TEST_TASKS[1]["context"],
+    (tst_db.TEST_TASKS[1]["content"],
      tst_db.TEST_TASKS[1]["condition"],
      2),
-    (tst_db.TEST_TASKS[0]["context"],
+    (tst_db.TEST_TASKS[0]["content"],
      tst_db.TEST_TASKS[0]["condition"],
      2),
-    (tst_db.TEST_TASKS[2]["context"],
+    (tst_db.TEST_TASKS[2]["content"],
      tst_db.TEST_TASKS[2]["condition"],
      1)
 ]

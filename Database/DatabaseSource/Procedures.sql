@@ -8,7 +8,7 @@ DECLARE
 BEGIN
     FOR i IN 0..tasks_number
     LOOP
-        context = tasks->i->>'context';
+        context = tasks->i->>'content';
         condition = tasks->i->'condition';
 
         INSERT INTO task

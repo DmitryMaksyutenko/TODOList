@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS task
 (
     task_id       SERIAL          NOT NULL,
-    context       VARCHAR(100)    NOT NULL,
+    content       VARCHAR(100)    NOT NULL,
     condition     BOOLEAN         NOT NULL DEFAULT FALSE,
     list_id       INT             NOT NULL,
 

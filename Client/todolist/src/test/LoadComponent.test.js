@@ -16,7 +16,6 @@ describe('Load.vue', () => {
   let store
   let loadDiv
   let maniButtonLoad
-  let cancelButton
   let firstListGroupElement
   let testWrapper
 
@@ -26,7 +25,6 @@ describe('Load.vue', () => {
     const mainComponentWrapper = shallowMount(Main, { store, localVue })
 
     testWrapper = loadComponentWrapper
-    cancelButton = loadComponentWrapper.find('#cancelButton')
     loadDiv = loadComponentWrapper.find('#load')
     firstListGroupElement = loadComponentWrapper.find('#listItem')
     maniButtonLoad = mainComponentWrapper.find('#loadButton')
@@ -46,16 +44,5 @@ describe('Load.vue', () => {
       expect(testWrapper.find('#loadButton').attributes('disabled')).toBeUndefined()
       expect(testWrapper.vm.selectedList.textContent.length).toBeGreaterThan(0)
     } catch {}
-  })
-
-  it('Cancel button clicking.', async () => {
-    await cancelButton.trigger('click')
-    expect(loadDiv.isVisible()).toBe(false)
-    expect(testWrapper.find('#loadButton').attributes('disabled')).toBe('true')
-    expect(testWrapper.vm.selectedList).toBeUndefined()
-  })
-  it('Lists loading from server.', async () => {
-    await store.dispatch('getLists')
-    expect(store.state.lists.length).toBeGreaterThan(0)
   })
 })

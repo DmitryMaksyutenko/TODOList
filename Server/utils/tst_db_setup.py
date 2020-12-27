@@ -29,9 +29,9 @@ TEST_LIST = [
 ]
 
 TEST_TASKS = [
-    {"context": "context 1", "condition": False},
-    {"context": "context 2", "condition": True},
-    {"context": "context 3", "condition": False}
+    {"content": "content 1", "condition": False},
+    {"content": "content 2", "condition": True},
+    {"content": "content 3", "condition": False}
 ]
 
 TEST_LIST_WITH_TASKS = [
@@ -39,11 +39,11 @@ TEST_LIST_WITH_TASKS = [
     {
         "tasks": {
             0: {
-                "context": TEST_TASKS[1]["context"],
+                "content": TEST_TASKS[1]["content"],
                 "condition": TEST_TASKS[1]["condition"]
             },
             1: {
-                "context": TEST_TASKS[0]["context"],
+                "content": TEST_TASKS[0]["content"],
                 "condition": TEST_TASKS[0]["condition"]
             }
         }
@@ -54,7 +54,7 @@ TEST_LIST_WITH_TASK = [
     {"title": TEST_LIST[0]},
     {
         "tasks": {0: {
-            "context": TEST_TASKS[2]["context"],
+            "content": TEST_TASKS[2]["content"],
             "condition": TEST_TASKS[2]["condition"]
             },
         }
@@ -73,7 +73,7 @@ CREATE TABLE IF NOT EXISTS list
 CREATE TABLE IF NOT EXISTS task
 (
     task_id       SERIAL          NOT NULL,
-    context       VARCHAR(100)    NOT NULL,
+    content       VARCHAR(100)    NOT NULL,
     condition     BOOLEAN         NOT NULL DEFAULT FALSE,
     list_id       INT             NOT NULL,
 
@@ -86,7 +86,7 @@ SELECT  title
 FROM list;
 
 CREATE OR REPLACE VIEW list_with_tasks AS
-SELECT title, context, condition
+SELECT title, content, condition
 FROM list JOIN task ON
     list.list_id = task.list_id;
 """
@@ -97,7 +97,7 @@ VALUES %s;
 """
 
 SQL_TEST_DATA_FOR_TASK = """
-INSERT INTO task (context, condition, list_id)
+INSERT INTO task (content, condition, list_id)
 VALUES %s;
 """
 
@@ -123,16 +123,16 @@ LANGUAGE plpgsql AS
 $$
 DECLARE
     tasks_number INT := jsonb_array_length(tasks) - 1;
-    context VARCHAR;
+    content VARCHAR;
     condition BOOLEAN;
 BEGIN
     FOR i IN 0..tasks_number
     LOOP
-        context = tasks->i->>'context';
+        content = tasks->i->>'content';
         condition = tasks->i->'condition';
 
         INSERT INTO task
-        VALUES (default, context, condition, list_id);
+        VALUES (default, content, condition, list_id);
     END LOOP;
 END;
 $$;

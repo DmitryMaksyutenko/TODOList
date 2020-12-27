@@ -1,12 +1,12 @@
 <template>
-    <div id="load"
+    <div id="Load"
         v-show="$store.state.loadVisible"
         class="load">
         <b-list-group
         id="listGroup"
         class="lst-group overflow-auto">
           <div v-if="$store.state.lists.length === 0">
-            <h1>There are no lists with tasks.</h1>
+            <b-list-group-item>There are no lists with tasks.</b-list-group-item>
           </div>
           <b-list-group-item v-else
             id="listItem"
@@ -20,6 +20,7 @@
         <div class="d-inline">
           <b-button
            id="loadButton"
+           v-on:click="loadButtonActions"
            :disabled="buttonLoadDisabled"
            pill
            class="load-button">Load
@@ -73,6 +74,16 @@ export default {
       this.buttonLoadDisabled = true
       this.$store.commit('updateLoadVisibleState', false)
       this.$store.commit('updateMainVisibleState', true)
+    },
+
+    loadButtonActions () {
+      this.removeClickedClassFromList()
+      const title = this.selectedList.textContent
+      this.selectedList = undefined
+      this.buttonLoadDisabled = true
+      this.$store.commit('updateLoadVisibleState', false)
+      this.$store.commit('updateListVisibleState', true)
+      this.$store.dispatch('getList', title)
     }
   }
 
@@ -111,25 +122,25 @@ export default {
 
 @media screen and (max-width: 500px) {
 
-.lst-group {
-  width: 96%;
-  margin-top: 1%;
-  margin-left: 2%;
-}
+  .lst-group {
+    width: 96%;
+    margin-top: 1%;
+    margin-left: 2%;
+  }
 
-.load-button {
-  margin: 4%;
-  width: 40%;
-  font-size: 120%;
-}
+  .load-button {
+    margin: 4%;
+    width: 40%;
+    font-size: 120%;
+  }
 
 }
 
 @media screen and (min-width: 1300px) {
 
-.load-button {
-  margin: 1%;
-}
+  .load-button {
+    margin: 1%;
+  }
 
 }
 

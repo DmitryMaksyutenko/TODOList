@@ -13,7 +13,7 @@ class Lists(models.Model):
 class ListWithTasks(models.Model):
     """Class for get_list_with_tasks view."""
     title = models.CharField(max_length=50, primary_key=True)
-    context = models.CharField(max_length=100)
+    content = models.CharField(max_length=100)
     condition = models.BooleanField(default=False)
 
     class Meta:

@@ -18,6 +18,7 @@ The list is deleted with tasks. The list name can't be changed.
 
 THE LIST CREATION.
 
+!! DONE !!
 - The main page has the two buttons:
     "Create list"
     "Load list"
@@ -36,6 +37,7 @@ THE LIST CREATION.
     name starts with the capital letter.
     not longer the 500 letters.
 
+!! DONE !!
 - If a check passed, appears the area for tasks creation with buttons:
     "Add"
     "Save"
@@ -44,19 +46,24 @@ THE LIST CREATION.
 
 LIST LOADIND.
 
+!! DONE !!
 - After clicking the "Load list" button, appears the area with a set of the saved lists with buttons:
     "Close"
     "Load"
 (API request to the backend server for retrieving the data from the database. Returns the JSON)
 
+!! DONE !!
 - The list in the set area must highlight when clicked left mouse button as selected.
 
+!! DONE !!
 - If the list is selected the "Load" button can be pressed, otherwise not.
 
+!! IN PROGRESS !!
 - After the "Load" button pressed appears the selected list.
 (API call with JSON to the backend for list retrieving. Returns JSON.)
 (The backend queries the database to retrieve the list.)
 
+!! DONE !!
 - If press the "Close" button, appears the main page.
 
 

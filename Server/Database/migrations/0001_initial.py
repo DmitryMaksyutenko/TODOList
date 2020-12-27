@@ -25,7 +25,7 @@ class Migration(migrations.Migration):
             name='ListWithTasks',
             fields=[
                 ('title', models.CharField(max_length=50, primary_key=True, serialize=False)),
-                ('context', models.CharField(max_length=100)),
+                ('content', models.CharField(max_length=100)),
                 ('condition', models.BooleanField(default=False)),
             ],
             options={

@@ -3,6 +3,7 @@
     <Main/>
     <Create/>
     <Load/>
+    <List/>
   </div>
 </template>
 
@@ -10,13 +11,15 @@
 import Main from './components/Main.vue'
 import Create from './components/Create'
 import Load from './components/Load'
+import List from './components/List'
 
 export default {
   name: 'App',
   components: {
     Main,
     Create,
-    Load
+    Load,
+    List
   }
 }
 </script>

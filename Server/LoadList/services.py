@@ -53,7 +53,7 @@ class List:
         for i in range(self.count):
             tasks["tasks"].setdefault(
                 i,
-                {"context": self.list[i].context,
+                {"content": self.list[i].content,
                  "condition": self.list[i].condition}
             )
         return tasks
