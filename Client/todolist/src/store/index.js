@@ -13,7 +13,10 @@ export default new Vuex.Store({
     loadVisible: false,
     listVisible: false,
     lists: [],
-    list: []
+    list: [
+      { title: '' },
+      { tasks: [] }
+    ]
   },
 
   mutations: {
@@ -39,6 +42,14 @@ export default new Vuex.Store({
 
     updateList (state, value) {
       this.state.list = value
+    },
+
+    addToList (state, value) {
+      const tmp = this.state.list[1].tasks
+      this.state.list[1].tasks = [{
+        content: value,
+        condition: false
+      }].concat(tmp)
     }
   },
 
@@ -55,11 +66,15 @@ export default new Vuex.Store({
     },
 
     getList (context, title) {
-      var tmpList = []
+      var tmpList = [
+        { title: '' },
+        { tasks: [] }
+      ]
       axios.get('http://192.168.0.101:8001/list/' + title.trim())
         .then(response => {
-          for (const elem in response.data) {
-            tmpList.push(response.data[elem])
+          tmpList[0].title = response.data[0].title
+          for (const elem in response.data[1].tasks) {
+            tmpList[1].tasks.push(response.data[1].tasks[elem])
           }
           context.commit('updateList', tmpList)
         })

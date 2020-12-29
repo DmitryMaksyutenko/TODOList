@@ -29,7 +29,7 @@ describe('Main.vue', () => {
 
     mainDiv = mainComponentWrapper.find('#mainPage')
     createDiv = createComponentWrapper.find('#create')
-    loadDiv = loadComponentWrapper.find('#load')
+    loadDiv = loadComponentWrapper.find('#Load')
     buttonLoad = mainComponentWrapper.find('#loadButton')
     buttonCreate = mainComponentWrapper.find('#createButton')
   })

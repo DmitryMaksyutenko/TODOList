@@ -2,12 +2,15 @@
     <div id="Load"
         v-show="$store.state.loadVisible"
         class="load">
+
         <b-list-group
         id="listGroup"
         class="lst-group overflow-auto">
+
           <div v-if="$store.state.lists.length === 0">
             <b-list-group-item>There are no lists with tasks.</b-list-group-item>
           </div>
+
           <b-list-group-item v-else
             id="listItem"
             v-for="list in $store.state.lists"
@@ -15,9 +18,12 @@
             v-on:click="itemClickActions($event)"
             class="lst-item">
             {{ list }}
-            </b-list-group-item>
+          </b-list-group-item>
+
         </b-list-group>
+
         <div class="d-inline">
+
           <b-button
            id="loadButton"
            v-on:click="loadButtonActions"
@@ -25,13 +31,16 @@
            pill
            class="load-button">Load
           </b-button>
+
           <b-button
            id="cancelButton"
            v-on:click="cancelButtonActions"
            pill
            class="load-button">Cancel
           </b-button>
+
         </div>
+
     </div>
 </template>
 
@@ -54,13 +63,13 @@ export default {
 
     listItemHiglight (domElement) {
       this.removeClickedClassFromList()
-      domElement.classList.add('lst-item-clicked')
+      domElement.classList.add('lst-item-selected')
       this.setSelectedList(domElement)
     },
 
     removeClickedClassFromList () {
       try {
-        this.selectedList.classList.remove('lst-item-clicked')
+        this.selectedList.classList.remove('lst-item-selected')
       } catch (error) {}
     },
 
@@ -90,7 +99,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .load {
   width: 100%;
   height: 100%;
@@ -108,16 +117,17 @@ export default {
   outline: 1px solid lightblue;
   user-select: none;
 }
-.lst-item-clicked {
+
+.lst-item-selected {
   outline: 3px solid rgb(122, 187, 209);
 }
 
 .load-button {
   background-color: rgb(73, 109, 114);
   margin: 3%;
-  width: 20%;
-  height: 10%;
-  font-size: 200%;
+  width: 15%;
+  height: 5%;
+  font-size: 150%;
 }
 
 @media screen and (max-width: 500px) {
@@ -130,7 +140,8 @@ export default {
 
   .load-button {
     margin: 4%;
-    width: 40%;
+    width: 30%;
+    height: 8%;
     font-size: 120%;
   }
 

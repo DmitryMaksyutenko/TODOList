@@ -25,7 +25,7 @@ describe('Load.vue', () => {
     const mainComponentWrapper = shallowMount(Main, { store, localVue })
 
     testWrapper = loadComponentWrapper
-    loadDiv = loadComponentWrapper.find('#load')
+    loadDiv = loadComponentWrapper.find('#Load')
     firstListGroupElement = loadComponentWrapper.find('#listItem')
     maniButtonLoad = mainComponentWrapper.find('#loadButton')
 

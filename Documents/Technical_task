@@ -58,7 +58,7 @@ LIST LOADIND.
 !! DONE !!
 - If the list is selected the "Load" button can be pressed, otherwise not.
 
-!! IN PROGRESS !!
+!! DONE !!
 - After the "Load" button pressed appears the selected list.
 (API call with JSON to the backend for list retrieving. Returns JSON.)
 (The backend queries the database to retrieve the list.)
@@ -83,13 +83,16 @@ LIST DELETEION.
 
 THE TASK APPENDING.
 
+!! DONE !!
 - After press the "Add" button appears the area for text entering with buttons:
     "Add"
     "Cancel"
     the text not longer than 100 symbols.
 
+!! DONE !!
 - If "Cancel" clicked the area for text entering is disappears.
 
+!! DONE !!
 - If the "Add" button was pressed, the task appends to the top of the tasks area,
   or under the last task.
 
