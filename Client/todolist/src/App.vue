@@ -4,6 +4,7 @@
     <Create/>
     <Load/>
     <List/>
+    <AddTask/>
   </div>
 </template>
 
@@ -12,6 +13,7 @@ import Main from './components/Main.vue'
 import Create from './components/Create'
 import Load from './components/Load'
 import List from './components/List'
+import AddTask from './components/AddTask.vue'
 
 export default {
   name: 'App',
@@ -19,7 +21,8 @@ export default {
     Main,
     Create,
     Load,
-    List
+    List,
+    AddTask
   }
 }
 </script>

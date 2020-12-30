@@ -12,11 +12,14 @@ export default new Vuex.Store({
     createVisible: false,
     loadVisible: false,
     listVisible: false,
+    listIsNotActive: false,
+    addAreaVisible: false,
     lists: [],
     list: [
       { title: '' },
       { tasks: [] }
-    ]
+    ],
+    newTaskText: ''
   },
 
   mutations: {
@@ -32,8 +35,16 @@ export default new Vuex.Store({
       this.state.loadVisible = value
     },
 
+    updateListIsNotActive (state, value) {
+      this.state.listIsNotActive = value
+    },
+
     updateListVisibleState (state, value) {
       this.state.listVisible = value
+    },
+
+    updateAddAreaVisibleState (state, value) {
+      this.state.addAreaVisible = value
     },
 
     updateLists (state, value) {
@@ -42,6 +53,10 @@ export default new Vuex.Store({
 
     updateList (state, value) {
       this.state.list = value
+    },
+
+    updateTaskText (state, value) {
+      this.state.newTaskText = value
     },
 
     addToList (state, value) {

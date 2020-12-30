@@ -2,44 +2,7 @@
     <div id="List"
         class="list"
         v-show="$store.state.listVisible"
-        v-bind:class="{'not-active': listIsNotActive}">
-
-        <div id="AddArea"
-          v-show="addAreaVisible"
-          class="add-area
-          position-absolute">
-
-          <b-form-input
-            placeholder="Task description."
-            class="add-area-input"
-            v-model="newTaskText">
-          </b-form-input>
-
-          <b-input-group-append>
-
-            <b-button
-              id="AddAreaAddButton"
-              class="col-3
-              add-area-button"
-              pill
-              squared
-              v-on:click="addAreaAddButtonClick">
-                Add
-            </b-button>
-
-            <b-button
-              id="AddAreaCancelButton"
-              class="col-3
-              add-area-button"
-              pill
-              squared
-              v-on:click="addAreaCancelButtonClick">
-                Cencel
-            </b-button>
-
-          </b-input-group-append>
-
-        </div>
+        v-bind:class="{'not-active': $store.state.listIsNotActive}">
 
         <div v-if="$store.state.list.length === 0">
             <b-list-group-item>There are no list with tasks.</b-list-group-item>
@@ -69,6 +32,11 @@
                     <div class="flex-grow-1 list-content">
                       {{ task.content }}
                     </div>
+
+                  <button type="button" class="btn btn-outline-secondary
+                    list-item-button">
+                    <img src="../assets/check-mark.svg" class="list-item-button-img"/>
+                  </button>
 
                   <button type="button" class="btn btn-outline-secondary
                     list-item-button">
@@ -115,31 +83,13 @@ export default {
 
   data () {
     return {
-      addAreaVisible: false,
-      isNotActive: false,
-      newTaskText: ''
     }
   },
 
   methods: {
     listAddButtonClick () {
-      this.addAreaVisible = true
-      this.listIsNotActive = true
-    },
-
-    addAreaCancelButtonClick () {
-      this.resetAddArea()
-    },
-
-    addAreaAddButtonClick () {
-      this.$store.commit('addToList', this.newTaskText)
-      this.resetAddArea()
-    },
-
-    resetAddArea () {
-      this.listIsNotActive = false
-      this.addAreaVisible = false
-      this.newTaskText = ''
+      this.$store.commit('updateAddAreaVisibleState', true)
+      this.$store.commit('updateListIsNotActive', true)
     }
   }
 
@@ -155,35 +105,6 @@ export default {
 
 .not-active {
   pointer-events: none;
-}
-
-.add-area {
-  width: 70%;
-  height: 30%;
-  margin-left: 16%;
-  top: 20%;
-  border-radius: 30px;
-  box-shadow: 0 0 30px 8px rgba(0, 0, 0, 1);
-  z-index: 1100;
-  background-color: rgb(231, 231, 222);
-  pointer-events: all;
-}
-
-.add-area-input {
-  margin-top: 5%;
-  margin-left: 5%;
-  outline: 1px solid lightblue;
-  width: 90%;
-  height: 20%;
-}
-
-.add-area-button {
-  margin: 10%;
-  margin-left: 20%;
-  width: 10%;
-  height: 12%;
-  font-size: 120%;
-  background-color: rgb(73, 109, 114);
 }
 
 .list-title {
@@ -211,6 +132,9 @@ export default {
 .list-content {
   height: 100%;
   text-align: left;
+  min-width: 80%;
+  overflow-wrap: break-word;
+  vertical-align: baseline;
 }
 
 .list-item-button {
@@ -233,21 +157,6 @@ export default {
 
 @media screen and (max-width: 500px) {
 
-    .add-area {
-    width: 100%;
-    height: 40%;
-    margin-left: 0%;
-  }
-
-  .add-area-button {
-    width: 10%;
-  }
-
-  .add-area-input {
-    margin-top: 7%;
-    height: 30%;
-  }
-
   .list-title {
     margin: 2%;
     width: 96%;
@@ -259,6 +168,16 @@ export default {
     max-height: 70%;
     margin-top: 1%;
     margin-left: 2%;
+  }
+
+  .lst-item {
+    margin: 1%;
+    padding: 0.1%;
+  }
+
+  .list-content {
+    padding: 0%;
+    min-width: 65%;
   }
 
   .list-button {
@@ -274,11 +193,6 @@ export default {
 }
 
 @media screen and (min-width: 1300px) {
-
-  .add-area-button {
-    margin: 5%;
-    margin-left: 22%;
-  }
 
   .load-button {
     margin: 0.5%;

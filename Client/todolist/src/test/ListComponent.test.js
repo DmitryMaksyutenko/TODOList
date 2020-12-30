@@ -21,21 +21,7 @@ describe('List.vue', () => {
 
   it('List Add button test.', async () => {
     await wrapper.find('#AddButton').trigger('click')
-    expect(wrapper.vm.addAreaVisible).toBe(true)
-    expect(wrapper.find('#AddArea').isVisible()).toBe(true)
-    expect(wrapper.vm.listIsNotActive).toBe(true)
-  })
-
-  it('Add area cancel button test.', async () => {
-    await wrapper.find('#AddAreaCancelButton').trigger('click')
-    expect(wrapper.vm.listIsNotActive).toBe(false)
-    expect(wrapper.find('#AddArea').isVisible()).toBe(false)
-    expect(wrapper.vm.newTaskText).toBe('')
-  })
-
-  it('Add area add button test.', async () => {
-    await wrapper.find('#AddAreaAddButton').trigger('click')
-    const task = store.state.list[1].tasks[0].content
-    expect(task).toBe(wrapper.vm.newTaskText)
+    expect(store.state.addAreaVisible).toBe(true)
+    expect(store.state.listIsNotActive).toBe(true)
   })
 })
