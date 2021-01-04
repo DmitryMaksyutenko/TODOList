@@ -27,24 +27,44 @@
                   id="ListItem"
                   class="lst-item d-flex"
                   v-for="task in $store.state.list[1].tasks"
-                  v-bind:key="task">
+                  v-bind:key="task"
+                  v-bind:class="{'task-done': task.condition,
+                                'task-not-complete': !task.condition}"
+                  draggable
+                  @drop="onDrop($event)"
+                  @dragover.prevent
+                  @dragenter.prevent
+                  @dragstart="startDrag($event, task)">
 
                     <div class="flex-grow-1 list-content">
                       {{ task.content }}
                     </div>
 
-                  <button type="button" class="btn btn-outline-secondary
-                    list-item-button">
+                  <button
+                    id="DoneButton"
+                    @dragstart.prevent
+                    type="button"
+                    v-bind:key="task"
+                    v-show="!task.condition"
+                    v-on:click="doneButtonClicked(task)"
+                    class="btn btn-outline-secondary
+                          list-item-button">
                     <img src="../assets/check-mark.svg" class="list-item-button-img"/>
                   </button>
 
-                  <button type="button" class="btn btn-outline-secondary
-                    list-item-button">
+                  <button
+                    type="button"
+                    @dragstart.prevent
+                    class="btn btn-outline-secondary
+                          list-item-button">
                     <img src="../assets/pencil.svg" class="list-item-button-img"/>
                   </button>
 
-                  <button type="button" class="btn btn-outline-secondary
-                    list-item-button">
+                  <button
+                    type="button"
+                    @dragstart.prevent
+                    class="btn btn-outline-secondary
+                          list-item-button">
                     <img src="../assets/delete.svg" class="list-item-button-img"/>
                   </button>
 
@@ -83,6 +103,7 @@ export default {
 
   data () {
     return {
+      taskUnderContent: ''
     }
   },
 
@@ -90,6 +111,41 @@ export default {
     listAddButtonClick () {
       this.$store.commit('updateAddAreaVisibleState', true)
       this.$store.commit('updateListIsNotActive', true)
+    },
+
+    startDrag (e, item) {
+      e.dataTransfer.dropEffect = 'move'
+      e.dataTransfer.effectAllowed = 'move'
+      e.dataTransfer.setData('draggedContent', item.content)
+    },
+
+    onDrop (e) {
+      const underElemContent = e.srcElement.innerText
+      const draggedContent = e.dataTransfer.getData('draggedContent')
+      const draggedTask = this.$store.state.list[1].tasks
+        .find(elem => elem.content === draggedContent)
+
+      this.removeTaskFromList(draggedTask.content)
+      this.replaceTask(underElemContent, draggedTask)
+    },
+
+    removeTaskFromList (content) {
+      this.$store.state.list[1].tasks = this.$store.state.list[1].tasks
+        .filter(value => value.content !== content)
+    },
+
+    replaceTask (underElemContent, draggedTask) {
+      const len = this.$store.state.list[1].tasks.length
+      for (let i = 0; i < len; i++) {
+        if (this.$store.state.list[1].tasks[i].content === underElemContent) {
+          this.$store.state.list[1].tasks.splice(i, 0, draggedTask)
+          break
+        }
+      }
+    },
+
+    doneButtonClicked (task) {
+      task.condition = !task.condition
     }
   }
 
@@ -125,7 +181,6 @@ export default {
 
 .lst-item {
   margin: 2%;
-  outline: 1px solid lightblue;
   user-select: none;
 }
 
@@ -153,6 +208,14 @@ export default {
   width: 12%;
   height: 5%;
   font-size: 150%;
+}
+
+.task-done {
+  outline: 1px solid rgb(0, 163, 0);
+}
+
+.task-not-complete {
+  outline: 1px solid lightcoral;
 }
 
 @media screen and (max-width: 500px) {

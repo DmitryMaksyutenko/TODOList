@@ -36,7 +36,7 @@ export default {
   display: flex;
   justify-content: center;
   height: 100%;
-  background-color: rgb(231, 231, 222);
+  background-color: rgb(246, 246, 246);
 }
 
 html, body {

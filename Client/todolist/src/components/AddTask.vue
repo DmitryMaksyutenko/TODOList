@@ -18,6 +18,7 @@
             add-area-button"
             pill
             squared
+            :disabled="$store.state.newTaskText === ''"
             v-on:click="addAreaAddButtonClick">
             Add
         </b-button>

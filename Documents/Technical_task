@@ -96,7 +96,7 @@ THE TASK APPENDING.
 - If the "Add" button was pressed, the task appends to the top of the tasks area,
   or under the last task.
 
-!! IN PROGRESS !!
+!! DONE !!
 - The task is the single, movable, text area with the description of the task and, the buttons:
     "Done"
     "Edit"
@@ -105,6 +105,7 @@ THE TASK APPENDING.
 
 THE TASK COMPLETED.
 
+!! DONE !!
 - If pressed the "Done" button, the task marked as completed.
 
 - If all tasks are marked as copmleted, the save button is not clickable, and
@@ -129,9 +130,11 @@ THE TASK EDITING.
 
 THE TASK DELETING.
 
+!! IN PROGRESS !!
 - If press the "Delete" button, the task removes from the list.
 
 
 THE TASK ORDER CHANGE.
 
+!! DONE !!
 - The task can be moved to the other position inside the list with drag and drop.

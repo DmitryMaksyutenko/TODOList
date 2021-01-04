@@ -6,6 +6,8 @@ import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
 import List from '../components/List.vue'
 import store from '../store/index'
 
+store.state.list[1].tasks.push({ content: 'test', condition: false })
+
 const localVue = createLocalVue()
 localVue.use(Vuex)
 localVue.use(BootstrapVue)
@@ -23,5 +25,13 @@ describe('List.vue', () => {
     await wrapper.find('#AddButton').trigger('click')
     expect(store.state.addAreaVisible).toBe(true)
     expect(store.state.listIsNotActive).toBe(true)
+  })
+
+  it('Task complited test.', async () => {
+    expect(wrapper.find('#ListItem').classes('task-not-complete')).toBe(true)
+    expect(wrapper.find('#DoneButton').isVisible()).toBe(true)
+    await wrapper.find('#DoneButton').trigger('click')
+    expect(wrapper.find('#ListItem').classes('task-done')).toBe(true)
+    expect(wrapper.find('#DoneButton').isVisible()).toBe(false)
   })
 })
