@@ -108,6 +108,7 @@ THE TASK COMPLETED.
 !! DONE !!
 - If pressed the "Done" button, the task marked as completed.
 
+!! IN PROGRESS !!
 - If all tasks are marked as copmleted, the save button is not clickable, and
   appears the area with the question "Got to the start page?", and buttons:
     "Ok"
@@ -118,19 +119,22 @@ THE TASK COMPLETED.
 
 THE TASK EDITING.
 
+!! DONE !!
 - If pressed the "Edit" button, the task switch to the edit mode.
   Appears the area with the task text and buttons:
     "Ok"
     "Cancel"
 
+!! DONE !!
 - If "Ok" button pressed, task text is modified and edit mode turns off.
 
+!! DONE !!
 - If "Cancel" button pressed, the text doesn't change and edit mode turns off.
 
 
 THE TASK DELETING.
 
-!! IN PROGRESS !!
+!! DONE !!
 - If press the "Delete" button, the task removes from the list.
 
 

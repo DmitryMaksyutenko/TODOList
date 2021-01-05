@@ -27,11 +27,24 @@ describe('List.vue', () => {
     expect(store.state.listIsNotActive).toBe(true)
   })
 
-  it('Task complited test.', async () => {
+  it('Task complited button test.', async () => {
     expect(wrapper.find('#ListItem').classes('task-not-complete')).toBe(true)
     expect(wrapper.find('#DoneButton').isVisible()).toBe(true)
     await wrapper.find('#DoneButton').trigger('click')
     expect(wrapper.find('#ListItem').classes('task-done')).toBe(true)
     expect(wrapper.find('#DoneButton').isVisible()).toBe(false)
+  })
+
+  it('Task edit button pressed.', async () => {
+    expect(store.state.editAreaVisible).toBe(false)
+    await wrapper.find('#EditButton').trigger('click')
+    expect(store.state.editAreaVisible).toBe(true)
+    expect(store.state.listIsNotActive).toBe(true)
+  })
+
+  it('Task delete button test.', async () => {
+    expect(store.state.list[1].tasks.length).toBe(1)
+    await wrapper.find('#DeleteTaskButton').trigger('click')
+    expect(store.state.list[1].tasks.length).toBe(0)
   })
 })

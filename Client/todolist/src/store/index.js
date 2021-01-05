@@ -14,12 +14,15 @@ export default new Vuex.Store({
     listVisible: false,
     listIsNotActive: false,
     addAreaVisible: false,
+    editAreaVisible: false,
     lists: [],
     list: [
       { title: '' },
       { tasks: [] }
     ],
-    newTaskText: ''
+    newTaskText: '',
+    editedTaskText: '',
+    oldTask: ''
   },
 
   mutations: {
@@ -46,6 +49,9 @@ export default new Vuex.Store({
     updateAddAreaVisibleState (state, value) {
       this.state.addAreaVisible = value
     },
+    updateEditAreaVisible (state, value) {
+      this.state.editAreaVisible = value
+    },
 
     updateLists (state, value) {
       this.state.lists = value
@@ -57,6 +63,19 @@ export default new Vuex.Store({
 
     updateTaskText (state, value) {
       this.state.newTaskText = value
+    },
+
+    updateEditedTaskText (state, value) {
+      this.state.editedTaskText = value
+      this.state.oldTask = value
+    },
+
+    editedTaskText (state, newTask) {
+      for (const task in this.state.list[1].tasks) {
+        if (this.state.list[1].tasks[task].content === this.state.oldTask) {
+          this.state.list[1].tasks[task].content = newTask
+        }
+      }
     },
 
     addToList (state, value) {

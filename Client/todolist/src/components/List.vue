@@ -53,7 +53,10 @@
                   </button>
 
                   <button
+                    id="EditButton"
                     type="button"
+                    v-bind:key="task"
+                    v-on:click="editButtonClicked(task)"
                     @dragstart.prevent
                     class="btn btn-outline-secondary
                           list-item-button">
@@ -61,8 +64,11 @@
                   </button>
 
                   <button
+                    id="DeleteTaskButton"
                     type="button"
                     @dragstart.prevent
+                    v-bind:key="task"
+                    v-on:click="removeTaskFromList(task.content)"
                     class="btn btn-outline-secondary
                           list-item-button">
                     <img src="../assets/delete.svg" class="list-item-button-img"/>
@@ -122,11 +128,11 @@ export default {
     onDrop (e) {
       const underElemContent = e.srcElement.innerText
       const draggedContent = e.dataTransfer.getData('draggedContent')
-      const draggedTask = this.$store.state.list[1].tasks
-        .find(elem => elem.content === draggedContent)
-
-      this.removeTaskFromList(draggedTask.content)
-      this.replaceTask(underElemContent, draggedTask)
+      if (underElemContent !== draggedContent) {
+        const draggedTask = this.$store.state.list[1].tasks
+          .find(elem => elem.content === draggedContent)
+        this.replaceTask(underElemContent, draggedTask)
+      }
     },
 
     removeTaskFromList (content) {
@@ -138,6 +144,7 @@ export default {
       const len = this.$store.state.list[1].tasks.length
       for (let i = 0; i < len; i++) {
         if (this.$store.state.list[1].tasks[i].content === underElemContent) {
+          this.removeTaskFromList(draggedTask.content)
           this.$store.state.list[1].tasks.splice(i, 0, draggedTask)
           break
         }
@@ -146,6 +153,12 @@ export default {
 
     doneButtonClicked (task) {
       task.condition = !task.condition
+    },
+
+    editButtonClicked (task) {
+      this.$store.commit('updateEditAreaVisible', true)
+      this.$store.commit('updateListIsNotActive', true)
+      this.$store.commit('updateEditedTaskText', task.content)
     }
   }
 

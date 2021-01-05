@@ -1,26 +1,27 @@
 <template>
-    <div id="AddArea"
-        v-show="$store.state.addAreaVisible"
+    <div
+        id="EditTaks"
+        v-show="$store.state.editAreaVisible"
         class="add-area
         position-absolute">
 
         <b-form-input
-          placeholder="Task description."
-          class="add-area-input"
-          v-model="$store.state.newTaskText">
+            class="add-area-input"
+            v-model="$store.state.editedTaskText">
+            {{ $store.state.editedTaskText }}
         </b-form-input>
 
         <b-input-group-append>
 
         <b-button
-            id="AddButton"
+            id="SaveButton"
             class="col-3
             add-area-button"
             pill
             squared
-            :disabled="$store.state.newTaskText === ''"
-            v-on:click="addAreaAddButtonClick">
-            Add
+            :disabled="$store.state.editedTaskText === ''"
+            v-on:click="editAreaSaveButtonClick">
+            Save
         </b-button>
 
         <b-button
@@ -29,37 +30,36 @@
             add-area-button"
             pill
             squared
-            v-on:click="addAreaCancelButtonClick">
+            v-on:click="editAreaCancelButtonClick">
             Cencel
         </b-button>
 
         </b-input-group-append>
-
     </div>
 </template>
 
 <script>
 export default {
 
-  name: 'AddTask',
+  name: 'EditTask',
 
   methods: {
-    addAreaAddButtonClick () {
-      this.$store.commit('addToList', this.$store.state.newTaskText.trim())
+    editAreaSaveButtonClick () {
+      this.$store.commit('editedTaskText', this.$store.state.editedTaskText.trim())
       this.resetToDefault()
     },
 
-    addAreaCancelButtonClick () {
+    editAreaCancelButtonClick () {
       this.resetToDefault()
     },
 
     resetToDefault () {
-      this.$store.commit('updateAddAreaVisibleState', false)
+      this.$store.commit('updateEditAreaVisible', false)
       this.$store.commit('updateListIsNotActive', false)
-      this.$store.commit('updateTaskText', '')
     }
   }
 }
+
 </script>
 
 <style scoped>
