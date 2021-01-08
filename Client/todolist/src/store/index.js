@@ -112,9 +112,9 @@ export default new Vuex.Store({
   },
 
   actions: {
-    getLists (context) {
+    async getLists (context) {
       var tmpLists = []
-      axios.get('http://192.168.0.101:8001/lists/')
+      await axios.get('http://192.168.0.101:8001/lists/')
         .then(response => {
           for (const elem in response.data) {
             tmpLists.push(response.data[elem].title)
@@ -123,12 +123,12 @@ export default new Vuex.Store({
       context.commit('updateLists', tmpLists)
     },
 
-    getList (context, title) {
+    async getList (context, title) {
       var tmpList = [
         { title: '' },
         { tasks: [] }
       ]
-      axios.get('http://192.168.0.101:8001/list/' + title.trim())
+      await axios.get('http://192.168.0.101:8001/list/' + title.trim())
         .then(response => {
           tmpList[0].title = response.data[0].title
           for (const elem in response.data[1].tasks) {
@@ -138,9 +138,9 @@ export default new Vuex.Store({
         })
     },
 
-    deleteList (context) {
+    async deleteList (context) {
       const data = JSON.stringify({ title: this.state.list[0].title.trim() })
-      axios.post('http://192.168.0.101:8001/delete/',
+      await axios.post('http://192.168.0.101:8001/delete/',
         data,
         { headers: { 'Content-Type': 'application/json' } })
         .then(response => {})
