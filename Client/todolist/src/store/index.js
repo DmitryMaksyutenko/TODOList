@@ -15,6 +15,8 @@ export default new Vuex.Store({
     listIsNotActive: false,
     addAreaVisible: false,
     editAreaVisible: false,
+    allDoneAreaVisible: false,
+    isAllTasksDone: false,
     lists: [],
     list: [
       { title: '' },
@@ -25,7 +27,28 @@ export default new Vuex.Store({
     oldTask: ''
   },
 
+  getters: {
+
+    isAllTasksComplete: (state) => {
+      for (const task in state.list[1].tasks) {
+        if (!state.list[1].tasks[task].condition) {
+          return false
+        }
+      }
+      return true
+    }
+  },
+
   mutations: {
+
+    updateAllDoneAreaVisible (state, value) {
+      this.state.allDoneAreaVisible = value
+    },
+
+    updateIsAllTasksDone (state, value) {
+      this.state.isAllTasksDone = value
+    },
+
     updateMainVisibleState (state, value) {
       this.state.mainVisible = value
     },
@@ -84,6 +107,7 @@ export default new Vuex.Store({
         content: value,
         condition: false
       }].concat(tmp)
+      this.state.isAllTasksDone = false
     }
   },
 
@@ -112,6 +136,14 @@ export default new Vuex.Store({
           }
           context.commit('updateList', tmpList)
         })
+    },
+
+    deleteList (context) {
+      const data = JSON.stringify({ title: this.state.list[0].title.trim() })
+      axios.post('http://192.168.0.101:8001/delete/',
+        data,
+        { headers: { 'Content-Type': 'application/json' } })
+        .then(response => {})
     }
   }
 

@@ -55,7 +55,9 @@ export default {
       selectedList: undefined
     }
   },
+
   methods: {
+
     itemClickActions (event) {
       this.buttonLoadDisabled = false
       this.listItemHiglight(event.target)

@@ -88,6 +88,7 @@
             <b-button
               id="SaveButton"
               class="list-button"
+              :disabled="$store.state.isAllTasksDone"
               pill>Save
             </b-button>
 
@@ -114,6 +115,7 @@ export default {
   },
 
   methods: {
+
     listAddButtonClick () {
       this.$store.commit('updateAddAreaVisibleState', true)
       this.$store.commit('updateListIsNotActive', true)
@@ -153,6 +155,15 @@ export default {
 
     doneButtonClicked (task) {
       task.condition = !task.condition
+      this.allDone()
+    },
+
+    allDone () {
+      if (this.$store.getters.isAllTasksComplete) {
+        this.$store.commit('updateIsAllTasksDone', true)
+        this.$store.commit('updateAllDoneAreaVisible', true)
+        this.$store.commit('updateListIsNotActive', true)
+      }
     },
 
     editButtonClicked (task) {

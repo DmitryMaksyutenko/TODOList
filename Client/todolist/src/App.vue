@@ -6,6 +6,7 @@
     <List/>
     <AddTask/>
     <EditTask/>
+    <AllTasksDone/>
   </div>
 </template>
 
@@ -16,6 +17,7 @@ import Load from './components/Load'
 import List from './components/List'
 import AddTask from './components/AddTask.vue'
 import EditTask from './components/EditTask.vue'
+import AllTasksDone from './components/AllTaksDone.vue'
 
 export default {
   name: 'App',
@@ -25,7 +27,8 @@ export default {
     Load,
     List,
     AddTask,
-    EditTask
+    EditTask,
+    AllTasksDone
   }
 }
 </script>
