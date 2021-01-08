@@ -95,6 +95,7 @@
             <b-button
               id="DeleteButton"
               class="list-button"
+              v-on:click="deleteList"
               pill>Delete list
             </b-button>
 
@@ -119,6 +120,14 @@ export default {
     listAddButtonClick () {
       this.$store.commit('updateAddAreaVisibleState', true)
       this.$store.commit('updateListIsNotActive', true)
+    },
+
+    deleteList () {
+      this.$store.dispatch('deleteList')
+      this.$store.commit('updateAllDoneAreaVisible', false)
+      this.$store.commit('updateListIsNotActive', false)
+      this.$store.commit('updateListVisibleState', false)
+      this.$store.commit('updateMainVisibleState', true)
     },
 
     startDrag (e, item) {
