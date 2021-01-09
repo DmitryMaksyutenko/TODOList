@@ -144,6 +144,18 @@ export default new Vuex.Store({
         data,
         { headers: { 'Content-Type': 'application/json' } })
         .then(response => {})
+    },
+
+    async saveList (context) {
+      const title = this.state.list[0]
+      let data = [title, { tasks: {} }]
+      for (var i = 0; i < this.state.list[1].tasks.length; i++) {
+        data[1].tasks[i] = this.state.list[1].tasks[i]
+      }
+      data = JSON.stringify(data)
+      await axios.post('http://192.168.0.101:8001/update/',
+        data,
+        { headers: { 'Content-Type': 'application/json' } })
     }
   }
 

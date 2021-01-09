@@ -88,6 +88,7 @@
             <b-button
               id="SaveButton"
               class="list-button"
+              v-on:click="saveList"
               :disabled="$store.state.isAllTasksDone"
               pill>Save
             </b-button>
@@ -120,6 +121,10 @@ export default {
     listAddButtonClick () {
       this.$store.commit('updateAddAreaVisibleState', true)
       this.$store.commit('updateListIsNotActive', true)
+    },
+
+    saveList () {
+      this.$store.dispatch('saveList')
     },
 
     deleteList () {
