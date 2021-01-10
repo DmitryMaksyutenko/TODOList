@@ -5,15 +5,17 @@ from .views import (
     get_list,
     insert_list,
     update_list,
-    delete_list
+    delete_list,
+    does_list_exists
 )
 
 app_name = "Api"
 
 urlpatterns = [
-    path("lists/", get_all_lists),
     re_path(r"list/(?P<title>[a-zA-z0-9 -]+)", get_list),
-    re_path("insert/", insert_list),
-    re_path("update/", update_list),
-    re_path("delete/", delete_list)
+    re_path(r"exists/(?P<title>[a-zA-z0-9 -]+)", does_list_exists),
+    path("lists/", get_all_lists),
+    path("insert/", insert_list),
+    path("update/", update_list),
+    path("delete/", delete_list)
 ]

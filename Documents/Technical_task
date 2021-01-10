@@ -18,7 +18,6 @@ The list is deleted with tasks. The list name can't be changed.
 
 THE LIST CREATION.
 
-!! DONE !!
 - The main page has the two buttons:
     "Create list"
     "Load list"
@@ -35,9 +34,8 @@ THE LIST CREATION.
 (The API call with JSON to the backend for checking the name. Returns JSON.)
 (The backend queries the database for names checking.)
     name starts with the capital letter.
-    not longer the 500 letters.
+    not longer the 50 letters.
 
-!! DONE !!
 - If a check passed, appears the area for tasks creation with buttons:
     "Add"
     "Save"
@@ -46,30 +44,24 @@ THE LIST CREATION.
 
 LIST LOADIND.
 
-!! DONE !!
 - After clicking the "Load list" button, appears the area with a set of the saved lists with buttons:
     "Close"
     "Load"
 (API request to the backend server for retrieving the data from the database. Returns the JSON)
 
-!! DONE !!
 - The list in the set area must highlight when clicked left mouse button as selected.
 
-!! DONE !!
 - If the list is selected the "Load" button can be pressed, otherwise not.
 
-!! DONE !!
 - After the "Load" button pressed appears the selected list.
 (API call with JSON to the backend for list retrieving. Returns JSON.)
 (The backend queries the database to retrieve the list.)
 
-!! DONE !!
 - If press the "Close" button, appears the main page.
 
 
 LIST SAVING.
 
-!! DONE !!
 - If the "Save" button clicked, the list saves to the database.
 (The API call with JSON sending to the backend for saving the data.)
 (If the list already exists, update the list, else insert a new list,)
@@ -77,7 +69,6 @@ LIST SAVING.
 
 LIST DELETEION.
 
-!! DONE !!
 - If pressed "Delete list", the main page area appears.
 (The API call to the backend for list deletion.)
 (The database deletes the list with tasks.)
@@ -85,20 +76,16 @@ LIST DELETEION.
 
 THE TASK APPENDING.
 
-!! DONE !!
 - After press the "Add" button appears the area for text entering with buttons:
     "Add"
     "Cancel"
     the text not longer than 100 symbols.
 
-!! DONE !!
 - If "Cancel" clicked the area for text entering is disappears.
 
-!! DONE !!
 - If the "Add" button was pressed, the task appends to the top of the tasks area,
   or under the last task.
 
-!! DONE !!
 - The task is the single, movable, text area with the description of the task and, the buttons:
     "Done"
     "Edit"
@@ -107,10 +94,8 @@ THE TASK APPENDING.
 
 THE TASK COMPLETED.
 
-!! DONE !!
 - If pressed the "Done" button, the task marked as completed.
 
-!! DONE !!
 - If all tasks are marked as copmleted, the save button is not clickable, and
   appears the area with the question "Got to the start page?", and buttons:
     "Ok"
@@ -121,26 +106,21 @@ THE TASK COMPLETED.
 
 THE TASK EDITING.
 
-!! DONE !!
 - If pressed the "Edit" button, the task switch to the edit mode.
   Appears the area with the task text and buttons:
     "Ok"
     "Cancel"
 
-!! DONE !!
 - If "Ok" button pressed, task text is modified and edit mode turns off.
 
-!! DONE !!
 - If "Cancel" button pressed, the text doesn't change and edit mode turns off.
 
 
 THE TASK DELETING.
 
-!! DONE !!
 - If press the "Delete" button, the task removes from the list.
 
 
 THE TASK ORDER CHANGE.
 
-!! DONE !!
 - The task can be moved to the other position inside the list with drag and drop.

@@ -57,8 +57,8 @@ def delete_list(request):
 
 
 @api_view(["GET"])
-def does_list_exists(request, data):
+def does_list_exists(request, title):
     if request.method == "GET":
         mngr = ExistenceManager()
-        result = mngr.exists(data)
+        result = mngr.exists(title)
         return Response({"exists": result}, status=status.HTTP_200_OK)

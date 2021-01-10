@@ -9,8 +9,7 @@ class ExistenceManager(FunctionManager):
         self._sql_query = "SELECT does_list_exists(%s);"
 
     def exists(self, data):
-        title = self._get_title(data)
-        return self._execute_query(title)
+        return self._execute_query(data.strip())
 
     def _execute_query(self, title):
         with connection.cursor() as cursor:
@@ -19,7 +18,7 @@ class ExistenceManager(FunctionManager):
         return result
 
     def _get_title(self, data):
-        return data["title"]
+        pass
 
     def _get_tasks(self, data):
         pass

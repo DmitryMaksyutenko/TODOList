@@ -31,10 +31,6 @@ class List:
         self.count = self.list.count()
         self.search_title = list_title
 
-    def exists(self):
-        """Return True if list exists otherwise return False."""
-        return self.list.exists()
-
     def get_as_list(self):
         """Return the Python list with List title and task(s)."""
         lst_title = self._get_list_title()

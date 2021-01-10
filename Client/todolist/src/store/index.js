@@ -17,12 +17,14 @@ export default new Vuex.Store({
     editAreaVisible: false,
     allDoneAreaVisible: false,
     isAllTasksDone: false,
+    listExists: false,
     lists: [],
     list: [
       { title: '' },
       { tasks: [] }
     ],
     newTaskText: '',
+    newListTitle: '',
     editedTaskText: '',
     oldTask: ''
   },
@@ -88,9 +90,17 @@ export default new Vuex.Store({
       this.state.newTaskText = value
     },
 
+    updateNewListTitle (state, value) {
+      this.state.newListTitle = value
+    },
+
     updateEditedTaskText (state, value) {
       this.state.editedTaskText = value
       this.state.oldTask = value
+    },
+
+    updateListExists (state, value) {
+      this.state.listExists = value
     },
 
     editedTaskText (state, newTask) {
@@ -156,6 +166,11 @@ export default new Vuex.Store({
       await axios.post('http://192.168.0.101:8001/update/',
         data,
         { headers: { 'Content-Type': 'application/json' } })
+    },
+
+    doesListExists (context) {
+      return axios.get('http://192.168.0.101:8001/exists/' +
+                      this.state.newListTitle.trim())
     }
   }
 

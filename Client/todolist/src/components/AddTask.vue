@@ -5,6 +5,7 @@
         position-absolute">
 
         <b-form-input
+          maxlength="100"
           placeholder="Task description."
           class="add-area-input"
           v-model="$store.state.newTaskText">

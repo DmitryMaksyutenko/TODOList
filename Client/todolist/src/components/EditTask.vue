@@ -6,6 +6,7 @@
         position-absolute">
 
         <b-form-input
+            maxlength="100"
             class="add-area-input"
             v-model="$store.state.editedTaskText">
             {{ $store.state.editedTaskText }}
