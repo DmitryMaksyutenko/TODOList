@@ -7,8 +7,8 @@
         <p
           id="exist-message"
           class="exist-message"
-          v-show="$store.state.listExists">
-          List exists
+          v-show="$store.state.listErrorVisible">
+          {{ errorMessage }}
         </p>
 
         <b-form-input
@@ -49,17 +49,41 @@ export default {
 
   name: 'Create',
 
+  data () {
+    return {
+      errorMessage: 'safs'
+    }
+  },
+
   methods: {
 
     async createButton () {
       await this.$store.dispatch('doesListExists')
         .then(response => {
+          this.$store.commit('updateListTitleError', true)
           if (response.data.exists) {
-            this.$store.commit('updateListExists', true)
+            this.errorMessage = 'List already exist.'
           } else {
-            alert('ho')
+            if (this.isUpperCase(this.$store.state.newListTitle[0])) {
+              this.createActions()
+              this.$store.dispatch('insertList')
+            } else {
+              this.errorMessage = 'List name must start with capital letter.'
+            }
           }
         })
+    },
+
+    isUpperCase (letter) {
+      const regexp = /^[A-Z]/
+      return regexp.test(letter)
+    },
+
+    createActions () {
+      this.$store.commit('newListTitle')
+      this.$store.commit('updateMainVisibleState', false)
+      this.$store.commit('updateCreateVisibleState', false)
+      this.$store.commit('updateListVisibleState', true)
     },
 
     cancelButton () {
@@ -67,6 +91,7 @@ export default {
       this.$store.commit('updateMainVisibleState', true)
       this.$store.commit('updateListExists', false)
       this.$store.commit('updateNewListTitle', '')
+      this.errorMessage = ''
     }
   }
 }

@@ -16,8 +16,8 @@ export default new Vuex.Store({
     addAreaVisible: false,
     editAreaVisible: false,
     allDoneAreaVisible: false,
+    listErrorVisible: false,
     isAllTasksDone: false,
-    listExists: false,
     lists: [],
     list: [
       { title: '' },
@@ -99,8 +99,8 @@ export default new Vuex.Store({
       this.state.oldTask = value
     },
 
-    updateListExists (state, value) {
-      this.state.listExists = value
+    updateListTitleError (state, value) {
+      this.state.listErrorVisible = value
     },
 
     editedTaskText (state, newTask) {
@@ -109,6 +109,11 @@ export default new Vuex.Store({
           this.state.list[1].tasks[task].content = newTask
         }
       }
+    },
+
+    newListTitle (state) {
+      this.state.list[0].title = this.state.newListTitle
+      this.state.list[1] = []
     },
 
     addToList (state, value) {
@@ -146,6 +151,14 @@ export default new Vuex.Store({
           }
           context.commit('updateList', tmpList)
         })
+    },
+
+    async insertList (context) {
+      const data = JSON.stringify([{ title: this.state.list[0].title.trim() }, { tasks: {} }])
+      await axios.post('http://192.168.0.101:8001/insert/',
+        data,
+        { headers: { 'Content-Type': 'application/json' } })
+        .then(response => {})
     },
 
     async deleteList (context) {
