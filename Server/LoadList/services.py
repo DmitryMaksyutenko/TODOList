@@ -39,17 +39,25 @@ class List:
 
     def _get_list_title(self):
         """Return list titile as dict."""
-        return {
-            "title": self.list.filter(title=self.search_title).first().title
-        }
+        title = {"title": ""}
+        try:
+            title["title"] = self.list.filter(
+                title=self.search_title).first().title
+        except BaseException:
+            title["title"] = self.search_title
+            return title
+        else:
+            return title
 
     def _get_tasks_for_title(self):
         """Return tasks for corresponding title as dict."""
         tasks = {"tasks": {}}
-        for i in range(self.count):
-            tasks["tasks"].setdefault(
-                i,
-                {"content": self.list[i].content,
-                 "condition": self.list[i].condition}
-            )
-        return tasks
+        try:
+            for i in range(self.count):
+                tasks["tasks"].setdefault(
+                    i,
+                    {"content": self.list[i].content,
+                     "condition": self.list[i].condition}
+                )
+        finally:
+            return tasks

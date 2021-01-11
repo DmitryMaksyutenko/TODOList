@@ -146,6 +146,7 @@ export default new Vuex.Store({
       await axios.get('http://192.168.0.101:8001/list/' + title.trim())
         .then(response => {
           tmpList[0].title = response.data[0].title
+          console.log(response.data)
           for (const elem in response.data[1].tasks) {
             tmpList[1].tasks.push(response.data[1].tasks[elem])
           }

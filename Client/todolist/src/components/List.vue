@@ -16,7 +16,8 @@
              id="ListTitle"
              class="border
              border-primary
-             list-title">{{ $store.state.list[0].title }}
+             list-title">
+             {{ $store.state.list[0].title }}
             </b-list-group-item>
 
             <b-list-group
