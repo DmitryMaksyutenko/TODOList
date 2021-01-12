@@ -1,9 +1,7 @@
 from django.db import connection
 
-from Database.DatabaseFunctionsManager import FunctionManager
 
-
-class ExistenceManager(FunctionManager):
+class ExistenceManager:
 
     def __init__(self):
         self._sql_query = "SELECT does_list_exists(%s);"
@@ -16,9 +14,3 @@ class ExistenceManager(FunctionManager):
             cursor.execute(self._sql_query, (title,))
             result = cursor.fetchone()[0]
         return result
-
-    def _get_title(self, data):
-        pass
-
-    def _get_tasks(self, data):
-        pass

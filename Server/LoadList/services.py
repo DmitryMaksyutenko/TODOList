@@ -27,9 +27,11 @@ class List:
     """Class for tasks inside the list."""
 
     def __init__(self, list_title):
-        self.list = ListWithTasks.objects.filter(title=list_title)
-        self.count = self.list.count()
         self.search_title = list_title
+        self.list = ListWithTasks.objects.filter(title=list_title)
+        if len(self.list) == 0:
+            self.list = Lists.objects.filter(title=list_title)
+        self.count = self.list.count()
 
     def get_as_list(self):
         """Return the Python list with List title and task(s)."""
@@ -39,15 +41,8 @@ class List:
 
     def _get_list_title(self):
         """Return list titile as dict."""
-        title = {"title": ""}
-        try:
-            title["title"] = self.list.filter(
-                title=self.search_title).first().title
-        except BaseException:
-            title["title"] = self.search_title
-            return title
-        else:
-            return title
+        title = self.list.values()[0]["title"]
+        return {"title": title}
 
     def _get_tasks_for_title(self):
         """Return tasks for corresponding title as dict."""

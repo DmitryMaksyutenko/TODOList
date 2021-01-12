@@ -5,6 +5,8 @@ import 'es6-promise'
 
 Vue.use(Vuex)
 
+const url = 'http://192.168.0.101:8001/'
+
 export default new Vuex.Store({
 
   state: {
@@ -113,7 +115,7 @@ export default new Vuex.Store({
 
     newListTitle (state) {
       this.state.list[0].title = this.state.newListTitle
-      this.state.list[1] = []
+      this.state.list[1].tasks = []
     },
 
     addToList (state, value) {
@@ -129,7 +131,7 @@ export default new Vuex.Store({
   actions: {
     async getLists (context) {
       var tmpLists = []
-      await axios.get('http://192.168.0.101:8001/lists/')
+      await axios.get(url + 'lists/')
         .then(response => {
           for (const elem in response.data) {
             tmpLists.push(response.data[elem].title)
@@ -143,10 +145,9 @@ export default new Vuex.Store({
         { title: '' },
         { tasks: [] }
       ]
-      await axios.get('http://192.168.0.101:8001/list/' + title.trim())
+      await axios.get(url + 'list/' + title.trim())
         .then(response => {
           tmpList[0].title = response.data[0].title
-          console.log(response.data)
           for (const elem in response.data[1].tasks) {
             tmpList[1].tasks.push(response.data[1].tasks[elem])
           }
@@ -156,7 +157,7 @@ export default new Vuex.Store({
 
     async insertList (context) {
       const data = JSON.stringify([{ title: this.state.list[0].title.trim() }, { tasks: {} }])
-      await axios.post('http://192.168.0.101:8001/insert/',
+      await axios.post(url + 'insert/',
         data,
         { headers: { 'Content-Type': 'application/json' } })
         .then(response => {})
@@ -164,7 +165,7 @@ export default new Vuex.Store({
 
     async deleteList (context) {
       const data = JSON.stringify({ title: this.state.list[0].title.trim() })
-      await axios.post('http://192.168.0.101:8001/delete/',
+      await axios.post(url + 'delete/',
         data,
         { headers: { 'Content-Type': 'application/json' } })
         .then(response => {})
@@ -177,13 +178,13 @@ export default new Vuex.Store({
         data[1].tasks[i] = this.state.list[1].tasks[i]
       }
       data = JSON.stringify(data)
-      await axios.post('http://192.168.0.101:8001/update/',
+      await axios.post(url + 'update/',
         data,
         { headers: { 'Content-Type': 'application/json' } })
     },
 
     doesListExists (context) {
-      return axios.get('http://192.168.0.101:8001/exists/' +
+      return axios.get(url + 'exists/' +
                       this.state.newListTitle.trim())
     }
   }

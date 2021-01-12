@@ -13,7 +13,7 @@
 
         <b-form-input
           maxlength="50"
-          placeholder="Task description."
+          placeholder="List title."
           class="add-area-input"
          v-model="$store.state.newListTitle">
         </b-form-input>
@@ -51,7 +51,7 @@ export default {
 
   data () {
     return {
-      errorMessage: 'safs'
+      errorMessage: ''
     }
   },
 
