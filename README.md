@@ -18,3 +18,5 @@ Database PostgreSQL v12.
 - Creating the API with Django REST framework, for interaction with the Django server application.
 
 - A brief look at bootstrapVue.
+
+![](./TODOList.gif)
