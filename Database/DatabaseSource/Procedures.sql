@@ -1,18 +1,18 @@
-CREATE PROCEDURE insert_tasks(list_id INT, tasks JSONB)
+CREATE PROCEDURE insert_tasks(id INT, tasks JSONB)
 LANGUAGE plpgsql AS
 $$
 DECLARE
     tasks_number INT := jsonb_array_length(tasks) - 1;
-    context VARCHAR;
+    content VARCHAR;
     condition BOOLEAN;
 BEGIN
     FOR i IN 0..tasks_number
     LOOP
-        context = tasks->i->>'context';
+        content = tasks->i->>'content';
         condition = tasks->i->'condition';
 
         INSERT INTO task
-        VALUES (default, context, condition, list_id);
+        VALUES (default, content, condition, id);
     END LOOP;
 END;
 $$;

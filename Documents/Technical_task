@@ -34,7 +34,7 @@ THE LIST CREATION.
 (The API call with JSON to the backend for checking the name. Returns JSON.)
 (The backend queries the database for names checking.)
     name starts with the capital letter.
-    not longer the 500 letters.
+    not longer the 50 letters.
 
 - If a check passed, appears the area for tasks creation with buttons:
     "Add"
