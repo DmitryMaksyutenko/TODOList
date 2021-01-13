@@ -1,7 +1,7 @@
 The project helps to describe the steps for work performing.
 Can be a list of notes or reminders.
 
-It is a single-page web application, that creates a list of the ordered tasks for performing.
+It is a single-page web application, that creates a list of tasks for performing.
 The tasks can be added, deleted, modified, mark as completed, changed the places.
 The list can be saved into the database, retreived and deleted.
 
